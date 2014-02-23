@@ -96,10 +96,15 @@ public class MainWindow extends javax.swing.JFrame {
 	  @Override
 	  public void paint(Graphics g) {
 		 super.paintComponents(g);
-		 paintbot.joint1.x = robotSlider.getValue();
+		 paintbot.joint1.x = robotSlider.getValue()*3 + 150;
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
-	     
+	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
+	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
+	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
+	     joint2XLabel.setText(String.valueOf(paintbot.joint2.x));
+	     joint3YLabel.setText(String.valueOf(paintbot.joint3.y));
+	     joint3XLabel.setText(String.valueOf(paintbot.joint3.x));
 	     //drawLineLengths(300,300,400,500,600, 700, 600);
 	     //Rotate(300,400,300,300,3.14);
 	  }
