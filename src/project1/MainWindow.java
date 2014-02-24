@@ -7,6 +7,8 @@
 package project1;
 
 import java.awt.*;
+import java.util.Vector;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -14,39 +16,37 @@ public class MainWindow extends javax.swing.JFrame {
 	JPanel panel;
 	JLabel label;
 	PaintBot paintbot;
-	  
-	  public void drawBot(int x1, int x2, int y2c, int x3, int y3c, int x4, int y4c) {
+	Boolean painting = false;
+	Vector<Location> paintinglocations = new Vector<Location>();
+	  public void drawBot(double x1, double x2, double y2c, double x3, double y3c, double x4, double y4c) {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  int height = screenSize.height;
-		  int y2 = height - y2c;
-		  int y3 = height - y3c;
-		  int y4 = height - y4c;
+		  double y2 = height - y2c;
+		  double y3 = height - y3c;
+		  double y4 = height - y4c;
 	       Graphics g = paintCanvasPanel.getGraphics();
 	       //Draw first joint
-	       g.drawOval(x1 - 5, height - 305, 10, 10);
+	       g.drawOval((int)(x1 - 5), height - 305, 10, 10);
 	       g.setColor(Color.BLACK);
-	       //g.fillOval(x1 - 5, height - 205, 10, 10);
 	       //Draw first link
-	       g.drawLine(x1,height - 300,x2,y2);
+	       g.drawLine((int)x1,height - 300,(int)x2,(int)y2);
 	       //Draw second joint
-	       g.drawOval(x2 - 5, y2 - 5, 10, 10);
+	       g.drawOval((int)(x2 - 5), (int)y2 - 5, 10, 10);
 	       g.setColor(Color.BLACK);
-	       //g.fillOval(x2 - 5, y2 - 5, 10, 10);
 	       //Draw second link
-	       g.drawLine(x2,y2,x3,y3);
+	       g.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
 	       //Draw third joint
-	       g.drawOval(x3 - 5, y3 - 5, 10, 10);
+	       g.drawOval((int)(x3 - 5), (int)(y3 - 5), 10, 10);
 	       g.setColor(Color.BLACK);
-	       //g.fillOval(x3 - 5, y3 - 5, 10, 10);
 	       //Draw third link
-	       g.drawLine(x3,y3,x4,y4);
-	       //Draw fourth joint
-	       g.drawOval(x4 - 5, y4 - 5, 10, 10);
+	       g.drawLine((int)x3,(int)y3,(int)x4,(int)y4);
+	       //Draw brush
+	       g.drawOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
 	       g.setColor(Color.BLACK);
-	       g.fillOval(x4 - 5, y4 - 5, 10, 10);
+	       g.fillOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
 	       
 	   }
-	    
+
 	  public void drawSlider(){
 	       Graphics g = paintCanvasPanel.getGraphics();
 	       g.setColor(Color.red);
@@ -65,48 +65,70 @@ public class MainWindow extends javax.swing.JFrame {
 		   String total3 = String.valueOf(link3length);
 		   g.drawString(total3, 100, 200);
 	  }
-	  public void Rotate(int x, int y, int basex, int basey, double theta, int jointnum){
+	  public void Rotate(double x, double y, double basex, double basey, double theta, int jointnum){
 		  double newX = basex + (x-basex)*Math.cos(theta) - (y-basey)*Math.sin(theta);
 		  double newY = basey + (x-basex)*Math.sin(theta) + (y-basey)*Math.cos(theta);
 		  switch(jointnum){
 		  case 1:
-			  drawBot(paintbot.joint1.x,(int)newX,(int)newY, paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
+			  	paintbot.psi += theta;
 		  		paintbot.joint2.x = (int)newX;
 		  		paintbot.joint2.y = (int)newY;
+		  		double tempx = Math.cos(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.x;
+		  		paintbot.joint3.x = (int) tempx;
+		  		double tempy = Math.sin(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.y;
+		  		paintbot.joint3.y = (int) tempy;
+		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+		  		paintbot.brush.x = (int) brushx;
+		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+		  		paintbot.brush.y = (int) brushy;
 		  		break;
 		  case 2:
-			  drawBot(paintbot.joint1.x, paintbot.joint2.x,paintbot.joint2.y,(int)newX,(int)newY, paintbot.brush.x,paintbot.brush.y);
-			  	paintbot.joint3.x = (int)newX;
+			  	paintbot.theta += theta;
+			    paintbot.joint3.x = (int)newX;
 			  	paintbot.joint3.y = (int)newY;
+			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+			  	paintbot.brush.x = (int)brushx2;
+			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+			  	paintbot.brush.y = (int)brushy2;
 			  	break;
 		  case 3:
-			  drawBot(paintbot.joint1.x, paintbot.joint2.x,paintbot.joint2.y, paintbot.joint3.x,paintbot.joint3.y,(int)newX,(int)newY);
+			  	paintbot.brushangle += theta;
 			  	paintbot.brush.x = (int)newX;
 			  	paintbot.brush.y = (int)newY;
 			  	break;
 		  }
-			 
-		  //paintCanvasPanel.updateUI();
 	  }
 	  public void InitBot(){
-		  PaintBot newpaintbot = new PaintBot(300,300,300,400,500,600,700,600);
+		  PaintBot newpaintbot = new PaintBot(300,300,300,450,300,550,300,625);
 		  paintbot = newpaintbot;
+		  
 	  }
 	  
+	  public void drawPaint(){
+		  Graphics g = this.getGraphics();
+		     if(painting == true){
+		    	 	paintinglocations.add(new Location(paintbot.brush.x,Toolkit.getDefaultToolkit().getScreenSize().height - paintbot.brush.y));
+		     }
+		     for(int i=0; i<paintinglocations.size();i++){
+			 	g.setColor(Color.GREEN);
+		 		g.drawOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y + 25, 10, 10);
+		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  + 25, 10, 10);
+		     }
+	  }
 	  @Override
 	  public void paint(Graphics g) {
 		 super.paintComponents(g);
 		 paintbot.joint1.x = robotSlider.getValue()*3 + 150;
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
+	     drawPaint();
+
 	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
 	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
 	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
 	     joint2XLabel.setText(String.valueOf(paintbot.joint2.x));
 	     joint3YLabel.setText(String.valueOf(paintbot.joint3.y));
 	     joint3XLabel.setText(String.valueOf(paintbot.joint3.x));
-	     //drawLineLengths(300,300,400,500,600, 700, 600);
-	     //Rotate(300,400,300,300,3.14);
 	  }
 	  
 	  /*public static void main(String[] argv)
@@ -404,7 +426,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void paintButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-
+    	if(painting == false)
+    		painting = true;
+    	else painting = false;
     }                                           
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
