@@ -115,6 +115,16 @@ public class MainWindow extends javax.swing.JFrame {
 		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  + 25, 10, 10);
 		     }
 	  }
+	  
+	  public void drawAngles(){
+		  Graphics g = this.getGraphics();
+	       String total1 = String.valueOf(paintbot.psi);
+	       g.drawString(total1, 100, 100);
+	       String total2 = String.valueOf(paintbot.theta);
+	       g.drawString(total2, 100, 120);
+	       String total3 = String.valueOf(paintbot.brushangle);
+	       g.drawString(total3, 100, 140);
+	  }
 	  @Override
 	  public void paint(Graphics g) {
 		 super.paintComponents(g);
@@ -122,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
 	     drawPaint();
-
+	     drawAngles();
 	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
 	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
 	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
