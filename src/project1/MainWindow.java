@@ -27,32 +27,42 @@ public class MainWindow extends javax.swing.JFrame {
 		  double y3 = height - y3c;
 		  double y4 = height - y4c;
 	       Graphics g = paintCanvasPanel.getGraphics();
+	       Graphics2D g2 = (Graphics2D) g;
 	       //Draw first joint
-	       g.drawOval((int)(x1 - 5), height - 305, 10, 10);
-	       g.setColor(Color.BLACK);
+	       //g2.setStroke(new BasicStroke(10));
+	       g2.setColor(Color.WHITE);
+	       g2.drawOval((int)(x1 - 5), height - 305, 10, 10);
 	       //Draw first link
-	       g.drawLine((int)x1,height - 300,(int)x2,(int)y2);
+	       g2.setStroke(new BasicStroke(5));
+	       g2.drawLine((int)x1,height - 300,(int)x2,(int)y2);
 	       //Draw second joint
-	       g.drawOval((int)(x2 - 5), (int)y2 - 5, 10, 10);
-	       g.setColor(Color.BLACK);
+	       g2.setStroke(new BasicStroke(1));
+
+	       g2.drawOval((int)(x2 - 5), (int)y2 - 5, 10, 10);
+	       g2.setColor(Color.WHITE);
+	       g2.setStroke(new BasicStroke(3));
 	       //Draw second link
-	       g.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
+	       g2.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
 	       //Draw third joint
-	       g.drawOval((int)(x3 - 5), (int)(y3 - 5), 10, 10);
-	       g.setColor(Color.BLACK);
+	       g2.setStroke(new BasicStroke(1));
+	       g2.drawOval((int)(x3 - 5), (int)(y3 - 5), 10, 10);
+	       g2.setColor(Color.WHITE);
 	       //Draw third link
-	       g.drawLine((int)x3,(int)y3,(int)x4,(int)y4);
+
+	       g2.drawLine((int)x3,(int)y3,(int)x4,(int)y4);
 	       //Draw brush
-	       g.drawOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
-	       g.setColor(Color.BLACK);
-	       g.fillOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
+	       g2.drawOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
+	       g2.setColor(Color.WHITE);
+	       g2.fillOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
 	       
 	   }
 
 	  public void drawSlider(){
 	       Graphics g = paintCanvasPanel.getGraphics();
-	       g.setColor(Color.red);
-	       g.drawLine(150, Toolkit.getDefaultToolkit().getScreenSize().height - 300, 450, Toolkit.getDefaultToolkit().getScreenSize().height - 300);
+	       Graphics2D g2 = (Graphics2D) g;
+	       g2.setStroke(new BasicStroke(3));
+	       g2.setColor(Color.red);
+	       g2.drawLine(150, Toolkit.getDefaultToolkit().getScreenSize().height - 300, 450, Toolkit.getDefaultToolkit().getScreenSize().height - 300);
 	  }
 	  
 	  public void drawLineLengths(int x, int x1, int y1, int x2, int y2, int x3, int y3){
@@ -413,7 +423,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        paintCanvasPanel.setBackground(new java.awt.Color(255, 255, 255));
+        paintCanvasPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout paintCanvasPanelLayout = new javax.swing.GroupLayout(paintCanvasPanel);
         paintCanvasPanel.setLayout(paintCanvasPanelLayout);
