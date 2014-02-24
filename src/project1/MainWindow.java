@@ -105,14 +105,14 @@ public class MainWindow extends javax.swing.JFrame {
 	  }
 	  
 	  public void drawPaint(){
-		  Graphics g = this.getGraphics();
+		  Graphics g = paintCanvasPanel.getGraphics();
 		     if(painting == true){
-		    	 	paintinglocations.add(new Location(paintbot.brush.x,Toolkit.getDefaultToolkit().getScreenSize().height - paintbot.brush.y));
+		    	 	paintinglocations.add(new Location(paintbot.brush.x - 5,Toolkit.getDefaultToolkit().getScreenSize().height - paintbot.brush.y - 5));
 		     }
 		     for(int i=0; i<paintinglocations.size();i++){
 			 	g.setColor(Color.GREEN);
-		 		g.drawOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y + 25, 10, 10);
-		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  + 25, 10, 10);
+		 		g.drawOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y , 10, 10);
+		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  , 10, 10);
 		     }
 	  }
 	  
@@ -132,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
 	     drawPaint();
-	     drawAngles();
+	     //drawAngles();
 	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
 	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
 	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
