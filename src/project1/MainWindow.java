@@ -30,7 +30,7 @@ public class MainWindow extends javax.swing.JFrame {
 	       Graphics2D g2 = (Graphics2D) g;
 	       //Draw first joint
 	       //g2.setStroke(new BasicStroke(10));
-	       g2.setColor(Color.WHITE);
+	       g2.setColor(new Color(34, 83,120));
 	       g2.drawOval((int)(x1 - 5), height - 305, 10, 10);
 	       //Draw first link
 	       g2.setStroke(new BasicStroke(5));
@@ -39,14 +39,14 @@ public class MainWindow extends javax.swing.JFrame {
 	       g2.setStroke(new BasicStroke(1));
 
 	       g2.drawOval((int)(x2 - 5), (int)y2 - 5, 10, 10);
-	       g2.setColor(Color.WHITE);
+	       g2.setColor(new Color(22, 149,163));
 	       g2.setStroke(new BasicStroke(3));
 	       //Draw second link
 	       g2.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
 	       //Draw third joint
 	       g2.setStroke(new BasicStroke(1));
 	       g2.drawOval((int)(x3 - 5), (int)(y3 - 5), 10, 10);
-	       g2.setColor(Color.WHITE);
+	       g2.setColor(new Color(172, 240,242));
 	       //Draw third link
 
 	       g2.drawLine((int)x3,(int)y3,(int)x4,(int)y4);
@@ -122,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
 		    	 	paintinglocations.add(new Location(paintbot.brush.x - 5,Toolkit.getDefaultToolkit().getScreenSize().height - paintbot.brush.y - 5));
 		     }
 		     for(int i=0; i<paintinglocations.size();i++){
-			 	g.setColor(Color.GREEN);
+			 	g.setColor(new Color(235, 127, 0));
 		 		g.drawOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y , 10, 10);
 		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  , 10, 10);
 		     }
@@ -423,7 +423,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        paintCanvasPanel.setBackground(new java.awt.Color(0, 0, 0));
+        paintCanvasPanel.setBackground(new Color(243, 255, 226));
 
         javax.swing.GroupLayout paintCanvasPanelLayout = new javax.swing.GroupLayout(paintCanvasPanel);
         paintCanvasPanel.setLayout(paintCanvasPanelLayout);
@@ -471,39 +471,39 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.1,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
 	     repaint();
 
     }                                             
 
     private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.1,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
 	     repaint();
 
     }                                             
 
     private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.1,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
 	     repaint();
     }                                            
 
     private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.1,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
 	     repaint();
     }                                            
 
     private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.1,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
 	     repaint();
     }                                            
  
     private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.1,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
 	     repaint();
 
     }                                             
