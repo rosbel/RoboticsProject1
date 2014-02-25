@@ -172,6 +172,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
 		InitBot();
         initComponents();
+        this.setTitle("Paint-Bot v1.0");
     }
 
     class SliderListener implements ChangeListener {
