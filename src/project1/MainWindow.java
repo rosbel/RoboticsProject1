@@ -424,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        paintCanvasPanel.setBackground(new Color(243, 255, 226));
+        paintCanvasPanel.setBackground(new Color(0, 0, 0));
 
         javax.swing.GroupLayout paintCanvasPanelLayout = new javax.swing.GroupLayout(paintCanvasPanel);
         paintCanvasPanel.setLayout(paintCanvasPanelLayout);
