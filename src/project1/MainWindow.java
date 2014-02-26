@@ -185,6 +185,127 @@ public class MainWindow extends javax.swing.JFrame {
 		}
     }
     
+<<<<<<< HEAD
+=======
+    
+    private void paintButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here: 
+    	painting = !painting;
+    }                                           
+
+    private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
+	     repaint();
+
+    }                                             
+
+    private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
+	     repaint();
+
+    }                                             
+
+    private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
+	     repaint();
+
+    }
+    
+    private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
+	     repaint();
+    }                                            
+
+    private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
+	     repaint();
+    }                                            
+
+    private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        // TODO add your handling code here:
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
+	     repaint();
+    }
+    
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	// TODO add your handling code here:
+    	paintinglocations.clear();
+    	repaint();
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainWindow().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JPanel controlPanel;
+    private javax.swing.JPanel coordinatesPanel;
+    private javax.swing.JLabel j1Label;
+    private javax.swing.JButton j1LeftButton;
+    private javax.swing.JButton j1RightButton;
+    private javax.swing.JButton clearButton;
+    private javax.swing.JLabel j2Label;
+    private javax.swing.JButton j2LeftButton;
+    private javax.swing.JButton j2RightButton;
+    private javax.swing.JLabel j3Label;
+    private javax.swing.JButton j3LeftButton;
+    private javax.swing.JButton j3RightButton;
+    private javax.swing.JLabel joint1Label;
+    private javax.swing.JLabel joint1XLabel;
+    private javax.swing.JLabel joint1YLabel;
+    private javax.swing.JLabel joint2Label;
+    private javax.swing.JLabel joint2XLabel;
+    private javax.swing.JLabel joint2YLabel;
+    private javax.swing.JLabel joint3Label;
+    private javax.swing.JLabel joint3XLabel;
+    private javax.swing.JLabel joint3YLabel;
+    private javax.swing.JPanel jointButtonsPanel;
+    private javax.swing.JLabel jointTitleLabel;
+    private javax.swing.JToggleButton paintButton;
+    private javax.swing.JPanel paintCanvasPanel;
+    private javax.swing.JSlider robotSlider;
+    private javax.swing.JLabel xTitleLabel;
+    private javax.swing.JLabel yTitleLabel;
+    // End of variables declaration     
+    
+    
+>>>>>>> 8dbb13017fdb1f3f9fa2db7fba6dfcd8db05625d
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -205,6 +326,7 @@ public class MainWindow extends javax.swing.JFrame {
         j3LeftButton = new javax.swing.JButton();
         j1RightButton = new javax.swing.JButton();
         j1LeftButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
         j2Label = new javax.swing.JLabel();
         j3Label = new javax.swing.JLabel();
         robotSlider = new javax.swing.JSlider();
@@ -393,6 +515,13 @@ public class MainWindow extends javax.swing.JFrame {
         joint3YLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         joint3YLabel.setText("0");
         coordinatesPanel.add(joint3YLabel);
+       
+        clearButton.setText("Clear Paint");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -400,23 +529,29 @@ public class MainWindow extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(robotSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(paintButton)
-                .addGap(52, 52, 52))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jointButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clearButton)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(paintButton)))
+                .addGap(44, 44, 44))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(57, 57, 57)
                 .addComponent(paintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(clearButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jointButtonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
