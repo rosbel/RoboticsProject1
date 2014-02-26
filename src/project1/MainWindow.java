@@ -153,6 +153,8 @@ public class MainWindow extends javax.swing.JFrame {
 	     joint2XLabel.setText(String.valueOf(paintbot.joint2.x));
 	     joint3YLabel.setText(String.valueOf(paintbot.joint3.y));
 	     joint3XLabel.setText(String.valueOf(paintbot.joint3.x));
+	     brushXLabel.setText(String.valueOf(paintbot.brush.x));
+	     brushYLabel.setText(String.valueOf(paintbot.brush.x));
 	  }
 	  
 	  /*public static void main(String[] argv)
@@ -298,6 +300,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSlider robotSlider;
     private javax.swing.JLabel xTitleLabel;
     private javax.swing.JLabel yTitleLabel;
+    private javax.swing.JLabel brushLabel;
+    private javax.swing.JLabel brushXLabel;
+    private javax.swing.JLabel brushYLabel;
     // End of variables declaration     
     
     
@@ -339,6 +344,9 @@ public class MainWindow extends javax.swing.JFrame {
         joint3Label = new javax.swing.JLabel();
         joint3XLabel = new javax.swing.JLabel();
         joint3YLabel = new javax.swing.JLabel();
+        brushLabel = new javax.swing.JLabel();
+        brushXLabel = new javax.swing.JLabel();
+        brushYLabel = new javax.swing.JLabel();
         paintCanvasPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -452,7 +460,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        coordinatesPanel.setLayout(new java.awt.GridLayout(4, 3));
+        coordinatesPanel.setLayout(new java.awt.GridLayout(5, 3));
 
         jointTitleLabel.setBackground(new java.awt.Color(200, 200, 200));
         jointTitleLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -510,6 +518,19 @@ public class MainWindow extends javax.swing.JFrame {
         joint3YLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         joint3YLabel.setText("0");
         coordinatesPanel.add(joint3YLabel);
+        
+        brushLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        brushLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brushLabel.setText("Brush");
+        coordinatesPanel.add(brushLabel);
+
+        brushXLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brushXLabel.setText("0");
+        coordinatesPanel.add(brushXLabel);
+
+        brushYLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        brushYLabel.setText("0");
+        coordinatesPanel.add(brushYLabel);
        
         clearButton.setText("Clear Paint");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
