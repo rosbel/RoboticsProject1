@@ -228,6 +228,12 @@ public class MainWindow extends javax.swing.JFrame {
 	     repaint();
     }
     
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    	// TODO add your handling code here:
+    	paintinglocations.clear();
+    	repaint();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -269,6 +275,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel j1Label;
     private javax.swing.JButton j1LeftButton;
     private javax.swing.JButton j1RightButton;
+    private javax.swing.JButton clearButton;
     private javax.swing.JLabel j2Label;
     private javax.swing.JButton j2LeftButton;
     private javax.swing.JButton j2RightButton;
@@ -314,6 +321,7 @@ public class MainWindow extends javax.swing.JFrame {
         j3LeftButton = new javax.swing.JButton();
         j1RightButton = new javax.swing.JButton();
         j1LeftButton = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
         j2Label = new javax.swing.JLabel();
         j3Label = new javax.swing.JLabel();
         robotSlider = new javax.swing.JSlider();
@@ -502,6 +510,13 @@ public class MainWindow extends javax.swing.JFrame {
         joint3YLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         joint3YLabel.setText("0");
         coordinatesPanel.add(joint3YLabel);
+       
+        clearButton.setText("Clear Paint");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -509,23 +524,29 @@ public class MainWindow extends javax.swing.JFrame {
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(robotSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(paintButton)
-                .addGap(52, 52, 52))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jointButtonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, controlPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(clearButton)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(paintButton)))
+                .addGap(44, 44, 44))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(57, 57, 57)
                 .addComponent(paintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(clearButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coordinatesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jointButtonsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
