@@ -199,7 +199,7 @@ public class MainWindow extends javax.swing.JFrame {
     class MyTask extends TimerTask {
         public void run() {
         	if (!paused){
-        		System.out.println("this is the timer task!");
+        		System.out.println("Timer - I'm pressing the button for you!");
         		if (jointClicked == "j3l")
         		    Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
         		else if (jointClicked == "j3r")
@@ -220,10 +220,16 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void JointButtonMousePressed(java.awt.event.MouseEvent evt)
     {
+    	try
+    	{
     	if (SwingUtilities.isRightMouseButton(evt)){
 	    	paused = false;
 	    	System.out.println("button pressed");
 	    	timer.scheduleAtFixedRate(task, 0, timerInterval);
+    	}
+    	}
+    	catch(Exception e){
+    		System.out.println("Some Timer Stuff.. Nothing to see here...");
     	}
     }
     
@@ -234,26 +240,22 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void paintButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here: 
     	painting = !painting;
     }                                           
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
 	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
 	     repaint();
 
     }                                             
 
-    private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
 	     repaint();
 
     }                                             
 
     private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
 	     repaint();
 
@@ -261,7 +263,6 @@ public class MainWindow extends javax.swing.JFrame {
     
     
     private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
 	     repaint();
     }       
@@ -269,19 +270,16 @@ public class MainWindow extends javax.swing.JFrame {
     
 
     private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
 	     repaint();
     }                                            
 
     private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
 	     repaint();
     }
     
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    	// TODO add your handling code here:
     	paintinglocations.clear();
     	repaint();
     }
