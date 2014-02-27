@@ -150,7 +150,7 @@ public class MainWindow extends javax.swing.JFrame {
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
 	     drawPaint();
-	     drawAngles();
+	     //drawAngles();
 	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
 	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
 	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
