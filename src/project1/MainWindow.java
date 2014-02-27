@@ -13,12 +13,20 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 @SuppressWarnings("serial")
 public class MainWindow extends javax.swing.JFrame {
 	JPanel panel;
 	JLabel label;
 	PaintBot paintbot;
 	Boolean painting = false;
+	long timerInterval = 100; //milliseconds
+	Timer timer = new Timer();
+	boolean paused = false;
+	
+	String jointClicked = "";
 	Vector<Location> paintinglocations = new Vector<Location>();
 	public void drawBot(double x1, double x2, double y2c, double x3, double y3c, double x4, double y4c) {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -183,58 +191,95 @@ public class MainWindow extends javax.swing.JFrame {
 		@Override
 		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
-            if (!source.getValueIsAdjusting()) {
-                repaint();
-            }   				
+                repaint();				
 		}
     }
     
+    MyTask task = new MyTask();
+    class MyTask extends TimerTask {
+        public void run() {
+        	if (!paused){
+        		System.out.println("Timer - I'm pressing the button for you!");
+        		if (jointClicked == "j3l")
+        		    Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
+        		else if (jointClicked == "j3r")
+        			Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
+        		else if (jointClicked == "j2l")
+        			Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
+        		else if (jointClicked == "j2r")
+        			Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
+        		else if (jointClicked == "j1l")
+        			Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
+        		else if (jointClicked == "j1r")
+        			Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
+        		repaint();
+        	
+        	}
+        }
+    }
+    
+    private void JointButtonMousePressed(java.awt.event.MouseEvent evt)
+    {
+    	try
+    	{
+    	if (SwingUtilities.isRightMouseButton(evt)){
+	    	paused = false;
+	    	System.out.println("button pressed");
+	    	timer.scheduleAtFixedRate(task, 0, timerInterval);
+    	}
+    	}
+    	catch(Exception e){
+    		System.out.println("Some Timer Stuff.. Nothing to see here...");
+    	}
+    }
+    
+    private void JointButtonMouseReleased(java.awt.event.MouseEvent evt)
+    {
+    	System.out.println("button released");
+    	paused = true;
+    }
+    
     private void paintButtonActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here: 
     	painting = !painting;
     }                                           
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
 	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
 	     repaint();
 
     }                                             
 
-    private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
 	     repaint();
 
     }                                             
 
     private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
 	     repaint();
 
     }
     
+    
     private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
 	     repaint();
-    }                                            
+    }       
+    
+    
 
     private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
 	     repaint();
     }                                            
 
     private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
-        // TODO add your handling code here:
 	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
 	     repaint();
     }
     
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {
-    	// TODO add your handling code here:
     	paintinglocations.clear();
     	repaint();
     }
@@ -370,6 +415,16 @@ public class MainWindow extends javax.swing.JFrame {
         j1Label.setText("Joint 1");
 
         j3RightButton.setText(">");
+        j3RightButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j3r";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j3r";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j3RightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j3RightButtonActionPerformed(evt);
@@ -377,6 +432,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         j2RightButton.setText(">");
+        j2RightButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j2r";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j2r";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j2RightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j2RightButtonActionPerformed(evt);
@@ -384,6 +449,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         j2LeftButton.setText("<");
+        j2LeftButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j2l";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j2l";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j2LeftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j2LeftButtonActionPerformed(evt);
@@ -391,6 +466,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         j3LeftButton.setText("<");
+        j3LeftButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j3l";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j3l";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j3LeftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j3LeftButtonActionPerformed(evt);
@@ -398,6 +483,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         j1RightButton.setText(">");
+        j1RightButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j1r";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j1r";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j1RightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j1RightButtonActionPerformed(evt);
@@ -405,6 +500,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         j1LeftButton.setText("<");
+        j1LeftButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j1l";
+                JointButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+            	jointClicked = "j1l";
+                JointButtonMouseReleased(evt);
+            }
+        });
         j1LeftButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 j1LeftButtonActionPerformed(evt);
