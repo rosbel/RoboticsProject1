@@ -20,7 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
 	PaintBot paintbot;
 	Boolean painting = false;
 	Vector<Location> paintinglocations = new Vector<Location>();
-	  public void drawBot(double x1, double x2, double y2c, double x3, double y3c, double x4, double y4c) {
+	public void drawBot(double x1, double x2, double y2c, double x3, double y3c, double x4, double y4c) {
 		  Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		  int height = screenSize.height;
 		  double y2 = height - y2c;
@@ -31,29 +31,29 @@ public class MainWindow extends javax.swing.JFrame {
 	       //Draw first joint
 	       //g2.setStroke(new BasicStroke(10));
 	       g2.setColor(new Color(34, 83,120));
-	       g2.drawOval((int)(x1 - 5), height - 305, 10, 10);
+	       g2.drawOval((int)Math.round(x1 - 5), height - 305, 10, 10);
 	       //Draw first link
 	       g2.setStroke(new BasicStroke(5));
-	       g2.drawLine((int)x1,height - 300,(int)x2,(int)y2);
+	       g2.drawLine((int)Math.round(x1),height - 300,(int)Math.round(x2),(int)Math.round(y2));
 	       //Draw second joint
 	       g2.setStroke(new BasicStroke(1));
 
-	       g2.drawOval((int)(x2 - 5), (int)y2 - 5, 10, 10);
+	       g2.drawOval((int)Math.round(x2 - 5), (int)Math.round(y2) - 5, 10, 10);
 	       g2.setColor(new Color(22, 149,163));
 	       g2.setStroke(new BasicStroke(3));
 	       //Draw second link
-	       g2.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
+	       g2.drawLine((int)Math.round(x2),(int)Math.round(y2),(int)Math.round(x3),(int)Math.round(y3));
 	       //Draw third joint
 	       g2.setStroke(new BasicStroke(1));
-	       g2.drawOval((int)(x3 - 5), (int)(y3 - 5), 10, 10);
+	       g2.drawOval((int)Math.round(x3 - 5), (int)Math.round(y3 - 5), 10, 10);
 	       g2.setColor(new Color(172, 240,242));
 	       //Draw third link
 
-	       g2.drawLine((int)x3,(int)y3,(int)x4,(int)y4);
+	       g2.drawLine((int)Math.round(x3),(int)Math.round(y3),(int)Math.round(x4),(int)Math.round(y4));
 	       //Draw brush
-	       g2.drawOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
+	       g2.drawOval((int)Math.round(x4 - 5), (int)Math.round(y4 - 5), 10, 10);
 	       g2.setColor(Color.WHITE);
-	       g2.fillOval((int)(x4 - 5), (int)(y4 - 5), 10, 10);
+	       g2.fillOval((int)Math.round(x4 - 5), (int)Math.round(y4 - 5), 10, 10);
 	       
 	   }
 
@@ -83,30 +83,30 @@ public class MainWindow extends javax.swing.JFrame {
 		  switch(jointnum){
 		  case 1:
 			  	paintbot.psi += theta;
-		  		paintbot.joint2.x = (int)newX;
-		  		paintbot.joint2.y = (int)newY;
+		  		paintbot.joint2.x = (int)Math.round(newX);
+		  		paintbot.joint2.y = (int)Math.round(newY);
 		  		double tempx = Math.cos(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.x;
-		  		paintbot.joint3.x = (int) tempx;
+		  		paintbot.joint3.x = (int) Math.round(tempx);
 		  		double tempy = Math.sin(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.y;
-		  		paintbot.joint3.y = (int) tempy;
+		  		paintbot.joint3.y = (int) Math.round(tempy);
 		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
-		  		paintbot.brush.x = (int) brushx;
+		  		paintbot.brush.x = (int) Math.round(brushx);
 		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
-		  		paintbot.brush.y = (int) brushy;
+		  		paintbot.brush.y = (int) Math.round(brushy);
 		  		break;
 		  case 2:
 			  	paintbot.theta += theta;
-			    paintbot.joint3.x = (int)newX;
-			  	paintbot.joint3.y = (int)newY;
+			    paintbot.joint3.x = (int)Math.round(newX);
+			  	paintbot.joint3.y = (int)Math.round(newY);
 			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
-			  	paintbot.brush.x = (int)brushx2;
+			  	paintbot.brush.x = (int)Math.round(brushx2);
 			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
-			  	paintbot.brush.y = (int)brushy2;
+			  	paintbot.brush.y = (int)Math.round(brushy2);
 			  	break;
 		  case 3:
 			  	paintbot.brushangle += theta;
-			  	paintbot.brush.x = (int)newX;
-			  	paintbot.brush.y = (int)newY;
+			  	paintbot.brush.x = (int)Math.round(newX);
+			  	paintbot.brush.y = (int)Math.round(newY);
 			  	break;
 		  }
 	  }
