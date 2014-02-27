@@ -183,9 +183,7 @@ public class MainWindow extends javax.swing.JFrame {
 		@Override
 		public void stateChanged(ChangeEvent e) {
             JSlider source = (JSlider)e.getSource();
-            if (!source.getValueIsAdjusting()) {
-                repaint();
-            }   				
+                repaint();				
 		}
     }
     
