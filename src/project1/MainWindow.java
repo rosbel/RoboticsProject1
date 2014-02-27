@@ -90,18 +90,18 @@ public class MainWindow extends javax.swing.JFrame {
 		  		paintbot.joint3.x = (int) Math.round(tempx);
 		  		double tempy = Math.sin(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.y;
 		  		paintbot.joint3.y = (int) Math.round(tempy);
-		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
 		  		paintbot.brush.x = (int) Math.round(brushx);
-		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
 		  		paintbot.brush.y = (int) Math.round(brushy);
 		  		break;
 		  case 2:
 			  	paintbot.theta += theta;
 			    paintbot.joint3.x = (int)Math.round(newX);
 			  	paintbot.joint3.y = (int)Math.round(newY);
-			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
 			  	paintbot.brush.x = (int)Math.round(brushx2);
-			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
 			  	paintbot.brush.y = (int)Math.round(brushy2);
 			  	break;
 		  case 3:
