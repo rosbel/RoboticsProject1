@@ -131,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
 		    	 	paintinglocations.add(new Location(paintbot.brush.x - 5,Toolkit.getDefaultToolkit().getScreenSize().height - paintbot.brush.y - 5));
 		     }
 		     for(int i=0; i<paintinglocations.size();i++){
-			 	g.setColor(new Color(235, 127, 0));
+			 	g.setColor(new Color(0, 255, 0)); //brush color
 		 		g.drawOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y , 10, 10);
 		 		g.fillOval((int)paintinglocations.elementAt(i).x, (int)paintinglocations.elementAt(i).y  , 10, 10);
 		     }
@@ -683,8 +683,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        paintCanvasPanel.setBackground(new Color(0, 0, 0));
-
+        paintCanvasPanel.setBackground(new Color(0, 0, 0)); // background color
+ 
         javax.swing.GroupLayout paintCanvasPanelLayout = new javax.swing.GroupLayout(paintCanvasPanel);
         paintCanvasPanel.setLayout(paintCanvasPanelLayout);
         paintCanvasPanelLayout.setHorizontalGroup(
