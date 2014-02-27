@@ -13,8 +13,8 @@ public class PaintBot {
 		joint2 = new Location(x2,y2);
 		joint3 = new Location(x3,y3);
 		brush = new Location(x4,y4);
-		psi = 3.14;
-		theta = 3.14;
-		brushangle = 3.14;
+		psi = 3.09;
+		theta = 4.79;
+		brushangle = 3.04;
 	}
 }

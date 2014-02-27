@@ -130,6 +130,7 @@ public class MainWindow extends javax.swing.JFrame {
 	  
 	  public void drawAngles(){
 		  Graphics g = this.getGraphics();
+		  g.setColor(Color.white);
 	       String total1 = String.valueOf(paintbot.psi);
 	       g.drawString(total1, 100, 100);
 	       String total2 = String.valueOf(paintbot.theta);
