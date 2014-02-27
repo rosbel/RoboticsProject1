@@ -67,6 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
 	  
 	  public void drawLineLengths(int x, int x1, int y1, int x2, int y2, int x3, int y3){
 	       Graphics g = paintCanvasPanel.getGraphics();
+	       g.setColor(Color.white);
 		  double link1length = Math.sqrt(Math.abs((x1 - x)^2 + (y1 - (Toolkit.getDefaultToolkit().getScreenSize().height - 300))^2));
 	       String total1 = String.valueOf(link1length);
 	       g.drawString(total1, 100, 100);
@@ -89,18 +90,18 @@ public class MainWindow extends javax.swing.JFrame {
 		  		paintbot.joint3.x = (int) tempx;
 		  		double tempy = Math.sin(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.y;
 		  		paintbot.joint3.y = (int) tempy;
-		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
 		  		paintbot.brush.x = (int) brushx;
-		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
 		  		paintbot.brush.y = (int) brushy;
 		  		break;
 		  case 2:
 			  	paintbot.theta += theta;
 			    paintbot.joint3.x = (int)newX;
 			  	paintbot.joint3.y = (int)newY;
-			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
+			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
 			  	paintbot.brush.x = (int)brushx2;
-			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
+			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
 			  	paintbot.brush.y = (int)brushy2;
 			  	break;
 		  case 3:
@@ -149,7 +150,7 @@ public class MainWindow extends javax.swing.JFrame {
 	     drawBot(paintbot.joint1.x,paintbot.joint2.x,paintbot.joint2.y,paintbot.joint3.x,paintbot.joint3.y,paintbot.brush.x,paintbot.brush.y);
 	     drawSlider();
 	     drawPaint();
-	     //drawAngles();
+	     drawAngles();
 	     joint1YLabel.setText(String.valueOf(paintbot.joint1.y));
 	     joint1XLabel.setText(String.valueOf(paintbot.joint1.x));
 	     joint2YLabel.setText(String.valueOf(paintbot.joint2.y));
@@ -193,40 +194,40 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.01,3);
 	     repaint();
 
     }                                             
 
     private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.01,2);
 	     repaint();
 
     }                                             
 
     private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.01,1);
 	     repaint();
 
     }
     
     private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.01,3);
 	     repaint();
     }                                            
 
     private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.01,2);
 	     repaint();
     }                                            
 
     private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.01,1);
 	     repaint();
     }
     
