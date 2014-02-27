@@ -89,22 +89,6 @@ public class MainWindow extends javax.swing.JFrame {
 		  		double tempx = Math.cos(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.x;
 		  		paintbot.joint3.x = (int) Math.round(tempx);
 		  		double tempy = Math.sin(paintbot.psi+paintbot.theta) * 100 + paintbot.joint2.y;
-<<<<<<< HEAD
-		  		paintbot.joint3.y = (int) tempy;
-		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
-		  		paintbot.brush.x = (int) brushx;
-		  		double brushy = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
-		  		paintbot.brush.y = (int) brushy;
-		  		break;
-		  case 2:
-			  	paintbot.theta += theta;
-			    paintbot.joint3.x = (int)newX;
-			  	paintbot.joint3.y = (int)newY;
-			  	double brushx2 = Math.cos(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.x;
-			  	paintbot.brush.x = (int)brushx2;
-			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle + paintbot.psi) * 75 + paintbot.joint3.y;
-			  	paintbot.brush.y = (int)brushy2;
-=======
 		  		paintbot.joint3.y = (int) Math.round(tempy);
 		  		double brushx = Math.cos(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.x;
 		  		paintbot.brush.x = (int) Math.round(brushx);
@@ -119,7 +103,6 @@ public class MainWindow extends javax.swing.JFrame {
 			  	paintbot.brush.x = (int)Math.round(brushx2);
 			  	double brushy2 = Math.sin(paintbot.theta + paintbot.brushangle) * 75 + paintbot.joint3.y;
 			  	paintbot.brush.y = (int)Math.round(brushy2);
->>>>>>> rosbelBackup
 			  	break;
 		  case 3:
 			  	paintbot.brushangle += theta;
@@ -213,40 +196,40 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void j3RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.01,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,-0.05,3);
 	     repaint();
 
     }                                             
 
     private void j2RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.01,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,-0.05,2);
 	     repaint();
 
     }                                             
 
     private void j1RightButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.01,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,-0.05,1);
 	     repaint();
 
     }
     
     private void j3LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.01,3);
+	     Rotate(paintbot.brush.x,paintbot.brush.y,paintbot.joint3.x,paintbot.joint3.y,0.05,3);
 	     repaint();
     }                                            
 
     private void j2LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.01,2);
+	     Rotate(paintbot.joint3.x,paintbot.joint3.y,paintbot.joint2.x,paintbot.joint2.y,0.05,2);
 	     repaint();
     }                                            
 
     private void j1LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.01,1);
+	     Rotate(paintbot.joint2.x,paintbot.joint2.y,paintbot.joint1.x,paintbot.joint1.y,0.05,1);
 	     repaint();
     }
     
